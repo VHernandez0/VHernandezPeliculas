@@ -1,0 +1,46 @@
+﻿@model ML.Pelicula
+@{
+    ViewData["Title"] = "GetFavorites";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+    <div class="Row">
+        <div class="text-center">
+        </div>
+    </div>
+
+</div>
+
+<hr />
+
+@foreach (ML.Pelicula pelis in Model.Pelis)
+{
+
+
+
+    <main>
+        <div class="card" style="width: 20rem;">
+            <img src="@pelis.Link@pelis.poster_path" class="card-img-top">
+            <div class="card-content">
+
+                <p>
+                    @pelis.overview
+                </p>
+                <a href="@Url.Action("Delete", "Peliculas", new {media_id=pelis.id})" onclick="return confirm('Estas seguro de que deseas Eliminar de favoritos?');" class="button">
+                    <h6>
+                        @pelis.title
+                    </h6>
+
+
+
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+
+}
+

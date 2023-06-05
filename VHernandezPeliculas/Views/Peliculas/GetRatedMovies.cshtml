@@ -1,0 +1,47 @@
+﻿@model ML.Pelicula
+@{
+    ViewData["Title"] = "GetRatedMovies";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="Row">
+        <div class="text-center">
+        </div>
+    </div>
+
+</div>
+
+<hr />
+         @using (Html.BeginForm("GetRatedMovies", "Peliculas", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+            @foreach (ML.Pelicula pelis in Model.Pelis)
+            {
+
+
+
+                <main>
+                    <div class="card" style="width: 20rem;">
+                        <img src="@pelis.Link@pelis.poster_path" class="card-img-top">
+                        <div class="card-content">
+                            <p>
+                                @pelis.overview
+                            </p>
+                    <a href="@Url.Action("AddMovie", "Peliculas", new {media_id=pelis.id})" onclick="return confirm('Estas seguro de que deseas Enviar a favoritos?');">
+                                <h5>
+                                   @pelis.title  
+                                </h5>
+                   
+                        
+
+                            </a>
+                        </div>
+
+                    </div>
+                </main>
+
+
+            }
+    }
+
+
